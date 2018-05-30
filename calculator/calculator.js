@@ -30,16 +30,9 @@ Calculator = {
 		}
 		m = Math.pow(10, Math.max(r1, r2));
 		console.log((v1 * m) + (v2 * m))
-		if((v1*m).toString().indexOf(".") != -1){
-			v1 = Number((v1*m).toString().split(".")[0])
-		}else{
-			v1 = v1*m;
-		}
-		if((v2*m).toString().indexOf(".") != -1){
-			v2 = Number((v2*m).toString().split(".")[0])
-		}else{
-			v2 = v2*m;
-		}
+		v1 = parseInt(v1*m);
+		v2 = parseInt(v2*m);
+		
 		return (v1 + v2) / m;
 	},
 	// 减
