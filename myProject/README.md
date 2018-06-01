@@ -4,6 +4,10 @@
 
 ## Build Setup
 
+
+
+
+
 ``` bash
 # install dependencies
 npm install
@@ -19,3 +23,6 @@ npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+使用el-tree的时候在render-content的渲染函数中，填写vNode 通过data中的变量控制vNode的部分代码后者功能的存在与否
