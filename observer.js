@@ -2,7 +2,7 @@ class Observer{
 	constructor(data){
 		this.observer(data);//专门对data数据将原有的属性改成set和get的形式
 	}
-	//递归，让每个字属性都observe
+	//递归，让每个子属性都observe
 	observer(data){
 		if(!data || typeof data !== 'object'){
 			return;
@@ -28,8 +28,8 @@ class Observer{
 		    },
 		    set:newVal=> {//当data属性中设置值的时候，更改获取的属性的值，
 		    	if(newVal !== value){
-		    		that.observer(newVal);//如果是对象继续劫持
-		    		value = newVal;
+		    		that.observer(newVal);//如果是对象继续劫持->递归
+		    		child = newVal;
 		    		dep.notify();//通知所有人，数据更新了
 		    	}
 		    }
