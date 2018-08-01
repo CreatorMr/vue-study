@@ -13,7 +13,9 @@
 涉及compile.js obsever.js watcher.js mvvm.js index.html
 
 ### vue 的工程构建
-   myProject
+   myProject 在使用element中el-tree时，render构建树是对其中的v-show不起作用的替代方法。
 ### vuex 
 	store中的readme.md
+### 在vue中for循环中使用src时不能将图片的正确显示
+	vue-amazing.js
     
