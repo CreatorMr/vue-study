@@ -4,14 +4,19 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import directive from './directive/index'
+import '../mock/index.js'
+import axios from 'axios'
+import install from './components/install'
 
+
+Vue.prototype.$axios = axios;
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: { App ,install},
   template: '<App/>',
   directive:directive
 })

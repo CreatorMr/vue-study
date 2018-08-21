@@ -38,7 +38,8 @@
 </el-row>
 
 <div>
-     <router-link to="/">Go to home</router-link>
+    <router-link to="/">Go to home</router-link>
+    <router-link to="/vuerender">Go to vuerender</router-link>
     <router-link to="/vuerender">Go to vuerender</router-link>
 </div>
     <router-view/>

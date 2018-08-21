@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import webApp from '@/components/webApp'
-import webSecond from '@/components/webSecond'
+import HelloWorld from '@/page/HelloWorld'
+import webApp from '@/page/webApp'
+import webSecond from '@/page/webSecond'
 
 Vue.use(Router)
 

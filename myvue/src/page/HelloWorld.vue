@@ -6,12 +6,13 @@
         <p>ssssssss</p>
       </div>
     </div>
+    <router-view></router-view>
 
     <div>
       <div v-time="timeNow"></div>
       <div v-time="timeBefore"></div>
+      <v-inputSelect :getSelectList="refundList"  :placeholder="placeholder"></v-inputSelect>
     </div>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -23,14 +24,30 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       show:false,
       timeNow:(new Date()).getTime(),
-      timeBefore:1488930695721
+      timeBefore:1488930695721,
+      placeholder:"请输入名字",
+      personName:"",
+      refundList:[]
     }
   },
   methods:{
     handleClose:function(){
       this.show = false
-    }
+    },
+    getSelectList(){
+      this.$axios.post('/console/icom',this.qryInput).then(res => {
+        console.log("mock模拟的数据")
+        console.log(res);
+        this.refundList = res.data.data.dataList;
+        this.totalCount = res.data.data.total;
+      })
+    },
+   
+  },
+  mounted(){
+    this.getSelectList()
   }
+
 }
 </script>
 

@@ -43,6 +43,8 @@ var Time = {
 			tip = "刚刚";
 		}else if(Math.floor(timer/60) <= 0){
 			tip = "刚刚"
+		}else if(timer < 3600){
+			tip = Math.floor(timer/60) + "分钟前"
 		}else if(timer>=3600 && (timestamp -today) >=0){
 			tip = Math.floor(timer/3600)+ "小时前";
 		}else if(timer/86400 <= 31){
@@ -58,7 +60,7 @@ Vue.directive('time',{
 	bind:function(el,binding){
 		el.innerHTML = Time.getFormatTime(binding.value);
 		el._timeout_ = setInterval(function(){
-			el.innerHTML = Time.getUnix(binding.value);
+			el.innerHTML = Time.getFormatTime(binding.value);
 		},6000)
 	},
 	unbind:function(el){
