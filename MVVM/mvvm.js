@@ -1,5 +1,8 @@
 /*
-  vue中双向数据绑定。 1模版的编译（把模版编译成我们想要的数据）、2数据劫持（Object.defineProperty 观察数据的变化，）、3watcher
+  vue中双向数据绑定。 
+  1模版的编译（把模版编译成我们想要的数据）、
+  2数据劫持（Object.defineProperty 观察数据的变化，）、
+  3watcher
 
 */
 
@@ -14,7 +17,7 @@ class MVVM{
 			//在编译之前进行[数据]劫持,就是吧对象的所有属性改成get和set方法
 
 			new Observer(this.$data);
-			//代理
+			//代理--目的是啥
 			this.proxyData(this.$data);
 			//用数据和元素进行编译
 			new Compile(this.$el,this);

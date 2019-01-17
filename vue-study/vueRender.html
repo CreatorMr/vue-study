@@ -1,0 +1,110 @@
+<!-- // @returns {VNode}
+createElement(
+    'div',
+    {},
+    []
+) -->
+
+<!-- /* 
+实现一个Foo组件渲染<div>foo</div>，实现一个Bar组件渲染<div>bar</div>。
+实现一个<example>组件，根据属性ok动态渲染Foo组件或者Bar组件。如果属性ok是true，那么最终的渲染应该是<div>foo</div>。
+实现一个按钮控制属性ok，通过这个属性让<example>在Foo或者Bar之间切换。
+根据上面的要求，在模板中调用<example>组件，然后定义<button>组件，同时绑定属性ok
+ */ -->
+<!-- 定义模版 -->
+ <div id="app">
+    <!--绑定属性ok-->
+    <example :ok="ok"></example>
+    
+    <!--绑定点击事件-->
+    <button @click="ok = !ok">toggle</button>
+ </div>
+ <script src="../node_modules/vue/dist/vue.js"></script>
+
+ <script>
+ const foo = {
+     render(h){
+         return h('div', 'foo')
+     }
+ }
+
+ const bar = {
+     render(h){
+         return h('div', 'bar')
+     }
+ }
+
+ Vue.Component({
+     props:['ok'],
+     render(h){
+        return h(this.ok ? foo : bar)
+     }
+ })
+ 
+ new Vue({
+     el:'#app',
+     data:{ok:true}
+ })
+ </script>
+
+ <!-- 
+     实现一个withAvatarURL函数，要求传入一个带有url属性的组件，
+     返回一个接收username属性的高阶组件，这个高阶组件主要负责获取相应的头像URL。
+     在API返回之前，高阶组件将占位符URLhttp://via.placeholder.com/200x200传递给内部组件 -->
+
+<script src="../node_modules/vue/dist/vue.js"></script>
+
+<!--定义template-->
+<div id="app">
+    <smart-avatar username="vuejs"></smart-avatar>
+</div>
+<script>
+function fetchURL(username, cb){
+    // 获取头像并回传
+    setTimeout(() => {
+        cb('https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLz6icP0y5Vk4IXibBxy6ehHRpa0HZjt1jle6rmU0FbHFvTyzUmXzGuwKuYbQmwicTMTmZNvibIEicB9Wg/132')
+    }, 500)
+}
+
+// 传递的InnerComponent
+const Avatar = {
+    props: ['src'],
+    template: `<img :src="src">`
+}
+
+function withAvatarURL(InnerComponent) {
+    return {
+        props:['username'],
+        inheritAttrs:false, // 2.4 only，组件将不会把未被注册的props呈现为普通的HTML属性
+        data(){
+            return {url:null}
+        },
+        created(){
+            //获取头像并回传给URL
+            fetchURL(this.username, url => {
+                this.url = url
+            })
+        },
+        render(h){
+            return h(InnerComponent, {
+                attrs: this.$attrs, // 2.4 only，获取到没有使用的注册属性
+                props: {
+                src: this.url || 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLz6icP0y5Vk4IXibBxy6ehHRpa0HZjt1jle6rmU0FbHFvTyzUmXzGuwKuYbQmwicTMTmZNvibIEicB9Wg/132'
+                }
+            })
+        }
+
+    }
+}
+const SmartAvatar = withAvatarURL(Avatar)
+
+new Vue({
+    el:'#app',
+    data:{
+
+    },
+    Conmponent:{ SmartAvatar }
+})
+</script>
+     
+

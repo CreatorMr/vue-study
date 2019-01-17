@@ -18,22 +18,22 @@ class Observer{
     	let that = this;
     	let child  = this.observer(value);
     	let dep = new Dep();//每个变化的数据，都会对应一个数组，这个数组存放所有更新的操作
-		//在获取某个值的时候
-		Object.defineProperty(obj,key,{
-			enumerable: true,
-    		configurable: true,
-		    get: ()=>{
-		    	Dep.target && dep.addSub(Dep.target);
-		    	return value;
-		    },
-		    set:newVal=> {//当data属性中设置值的时候，更改获取的属性的值，
-		    	if(newVal !== value){
-		    		that.observer(newVal);//如果是对象继续劫持->递归
-		    		child = newVal;
-		    		dep.notify();//通知所有人，数据更新了
-		    	}
-		    }
-		})
+			//在获取某个值的时候
+			Object.defineProperty(obj,key,{
+				enumerable: true,
+	    		configurable: true,
+			    get: ()=>{
+			    	Dep.target && dep.addSub(Dep.target);
+			    	return value;
+			    },
+			    set:newVal=> {//当data属性中设置值的时候，更改获取的属性的值，
+			    	if(newVal !== value){
+			    		that.observer(newVal);//如果是对象继续劫持->递归
+			    		child = newVal;
+			    		dep.notify();//通知所有人，数据更新了
+			    	}
+			    }
+			})
 
 	}
   
