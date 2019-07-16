@@ -6,6 +6,7 @@
         <p>ssssssss</p>
       </div>
     </div>
+    <input type="text" v-model="personName">
     <router-view></router-view>
 
     <div>
@@ -13,12 +14,16 @@
       <div v-time="timeBefore"></div>
       <v-inputSelect :getSelectList="refundList"  :placeholder="placeholder"></v-inputSelect>
     </div>
+    {{num}}
   </div>
 </template>
 
 <script>
+import mixix from "./mixin.js"
+import { debuglog } from 'util';
 export default {
   name: 'HelloWorld',
+  mixins:[mixix],
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -30,9 +35,26 @@ export default {
       refundList:[]
     }
   },
+  created(){
+    console.log("组件的created钩子函数")
+  },
+  computed:{
+    num(){
+      return this.personName + "  哈哈";
+    }
+  },
+  watch:{
+     "personName":function(oldVal,newVal) {
+       console.log("这个personName 变化了")
+       console.log(this)
+      this.a()
+     }
+  },
   methods:{
     handleClose:function(){
       this.show = false
+      this.a()
+      console.log(this.handleClose)
     },
     getSelectList(){
       this.$axios.post('/console/icom',this.qryInput).then(res => {
@@ -42,6 +64,9 @@ export default {
         this.totalCount = res.data.data.total;
       })
     },
+    a(){
+      console.log("组件中的a")
+    }
    
   },
   mounted(){

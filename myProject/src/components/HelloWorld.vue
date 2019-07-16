@@ -96,6 +96,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/* @import "../css/index.css"; */
 h1, h2 {
   font-weight: normal;
 }
@@ -109,5 +110,8 @@ li {
 }
 a {
   color: #42b983;
+}
+.abcd__00001kkkk{
+  color: red;
 }
 </style>
