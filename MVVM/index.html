@@ -5,8 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
 	<link rel="stylesheet" href="">
-	<script type="text/javascript" src="./watcher.js"></script>
 	<script type="text/javascript" src="./observer.js"></script>
+	<script type="text/javascript" src="./watcher.js"></script>
 	<script type="text/javascript" src="./compile.js"></script>
 	<script src="./mvvm.js" ></script>
 </head>
@@ -16,13 +16,21 @@
 		<div>
 			{{message}}
 		</div>
+		{{person.name}}
+		<div v-text="text"></div>
+		<div v-html="htmlStr"></div>
 	</div>
 </body>
 <script type="text/javascript">
 	var vm = new MVVM({
 		el:'#app',
 		data:{
-			message:"sadfa"
+			message:"sadfa",
+			person: {
+				name: 'jack'
+			},
+			text: 'test',
+			htmlStr: ''
 		}
 	})
 </script>

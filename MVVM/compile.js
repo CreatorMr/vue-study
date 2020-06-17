@@ -34,7 +34,8 @@ class Compile{
 				let expr = attrs.value;
 				let [,type] = attrName.split('-');
 				//node this.vm.$data expr
-				CompileUtil[type](node,this.vm,expr);
+				let [typeName, eventName] = type.split(':')
+				CompileUtil[typeName](node,this.vm,expr, eventName);
 				//
 			}
 		})
@@ -123,16 +124,31 @@ CompileUtil = {
 		//"message.a" => [message,a] vm.$data.message.azzzzzzzzzzzzz
 
 		//添加监控，数据变化了，调用这个watcher的callback
+		debugger
 		new Watcher(vm,expr,(newValue)=>{
+			console.log("wathcer")
 			//当值变化后会调用cb，传递进来新的值
 			updateFn && updateFn(node,this.getValue(vm,expr));//更新视图
 		})
 		node.addEventListener('input',(e)=>{
 			let newValue = e.target.value;
+			console.log(e.target.value, 'eeee')
 			this.setVal(vm,expr,newValue);
 		})
 
 		updateFn && updateFn(node,this.getValue(vm,expr))
+	},
+
+	html(node,vm,expr) {
+		const value = this.getValue(vm, expr)
+		new Watcher(vm,expr,(newValue) => {
+			this.updater.htmlUpdater(node,newValue)
+		})
+	},
+	on(node,vm,expr, eventName) {
+		console.log(vm,expr,eventName)
+		let fn = vm.methods && vm.methods[expr]
+		node.addEventListener(eventName, fn.bind(vm), false)
 	},
 
 	updater:{
@@ -142,7 +158,11 @@ CompileUtil = {
 		},
 		//输入框更新
 		modelUpdater(node,value){
+			debugger
 			node.value = value;
-		}
+		},
+		htmlUpdater(node,value){
+			node.innerHTML = value;
+		},
 	}
 }

@@ -7,7 +7,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '../mock/index.js'
 import axios from 'axios'
+import BaiduMap from 'vue-baidu-map'
 
+Vue.use(BaiduMap, {
+  /* Visit http://lbsyun.baidu.com/apiconsole/key for details about app key. */
+  ak: 'YOUR_APP_KEY'
+})
 
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI)

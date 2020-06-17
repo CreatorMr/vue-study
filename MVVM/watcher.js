@@ -1,11 +1,12 @@
 //观察者的目的就是给需要变化的元素增加一个观察者，数据改变后执行对应的方法，对模版重新编译
 class Watcher{
 	constructor(vm,expr,cb){
+		debugger
 		this.vm = vm;
 		this.expr = expr;
 		this.cb = cb;
 		//先获取一下旧值
-		this.value = this.get();
+		this.value = this.getOldValue();
 
 	}
 	getVal(vm,expr){
@@ -14,8 +15,8 @@ class Watcher{
 			return prev[next];
 		},vm.$data);
 	}
-	get(){
-		Dep.target = this;
+	getOldValue(){
+		Dep.target = this; // 把当前的watcher  挂在在dep 的静态属性上
 		let value = this.getVal(this.vm,this.expr);
 		Dep.target = null;
 		return value;

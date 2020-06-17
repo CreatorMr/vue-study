@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <el-row>
-  <el-button>默认按钮</el-button>
+    <!-- <img src="./assets/logo.png">
+    <el-row> -->
+  <!-- <el-button>默认按钮</el-button>
   <el-button type="primary">主要按钮</el-button>
   <el-button type="success">成功按钮</el-button>
   <el-button type="info">信息按钮</el-button>
@@ -26,9 +26,9 @@
   <el-button type="info" round>信息按钮</el-button>
   <el-button type="warning" round>警告按钮</el-button>
   <el-button type="danger" round>危险按钮</el-button>
-</el-row>
+</el-row> -->
 
-<el-row>
+<!-- <el-row>
   <el-button icon="el-icon-search" circle></el-button>
   <el-button type="primary" icon="el-icon-edit" circle></el-button>
   <el-button type="success" icon="el-icon-check" circle></el-button>
@@ -41,7 +41,7 @@
     <router-link to="/">Go to home</router-link>
     <router-link to="/vuerender">Go to vuerender</router-link>
     <router-link to="/vuerender">Go to vuerender</router-link>
-</div>
+</div> -->
     <router-view/>
   </div>
 </template>
@@ -59,6 +59,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+}
+
+html,body {
+  height: 100%;
 }
 </style>

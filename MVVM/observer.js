@@ -12,7 +12,7 @@ class Observer{
 			//劫持--定义响应式
 			this.defineReactive(data,key,data[key])
 		})
-  	}
+  }
     defineReactive(obj,key,value){
     	//本身劫持之后在对新的值进行劫持
     	let that = this;
@@ -29,7 +29,8 @@ class Observer{
 			    set:newVal=> {//当data属性中设置值的时候，更改获取的属性的值，
 			    	if(newVal !== value){
 			    		that.observer(newVal);//如果是对象继续劫持->递归
-			    		child = newVal;
+							// child = newVal;
+							value = newVal
 			    		dep.notify();//通知所有人，数据更新了
 			    	}
 			    }
